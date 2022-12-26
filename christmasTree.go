@@ -3,14 +3,16 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"os"
 	"time"
 )
 
-func christmasTree(branchMax int, levelMax int) {
+func christmasTree(branchMax int, levelMax int, brandString string) {
 	level := 1
 	branchMiddle := branchMax / 2
-	grovUp := true
+	groveUp := true
 	rand.Seed(time.Now().UnixNano())
+
 	for level <= levelMax {
 		branch := 0
 		for branch < branchMax {
@@ -20,9 +22,10 @@ func christmasTree(branchMax int, levelMax int) {
 				} else {
 					fmt.Print("🎄")
 				}
-			} else if (branch >= branchMiddle-1 && branch <= branchMiddle+1) && (level >= levelMax-3) {
+			} else if (branch >= branchMiddle-1 && branch <= branchMiddle+1) && (level >= levelMax-4) {
 				fmt.Print("🪵")
-			} else if branch < branchMiddle-level+1 || branch > branchMiddle+level-1 || level > levelMax-3 {
+				groveUp = false
+			} else if branch < branchMiddle-level+1 || branch > branchMiddle+level-1 || level > levelMax-4 {
 				salut := rand.Intn(50)
 				if level < 10 && (branch < branchMiddle-level-2 || branch > branchMiddle+level+2) {
 					switch salut {
@@ -36,7 +39,6 @@ func christmasTree(branchMax int, levelMax int) {
 				} else {
 					fmt.Print("  ")
 				}
-
 			} else if branch == branchMiddle && level == 1 {
 				fmt.Print("🌟")
 			} else {
@@ -69,17 +71,25 @@ func christmasTree(branchMax int, levelMax int) {
 			branch++
 		}
 		fmt.Print("\n")
-		if !grovUp {
-			grovUp = true
+
+		if !groveUp {
+			groveUp = true
 			level++
 		} else if level == levelMax {
 			level++
 		} else {
-			grovUp = false
+			groveUp = false
 		}
 	}
 
-	happyString := " HAPPY NEW 2023 YEAR! "
+	happyString := " " + brandString + " A HAPPY NEW 2023 YEAR!!! "
+	for len(happyString)%4 != 0 {
+		if len(happyString)%2 == 0 {
+			happyString += " "
+		} else {
+			happyString = " " + happyString
+		}
+	}
 	firstSets := branchMax*2 - len(happyString)
 	w := 0
 	happyStringStar := ""
@@ -88,8 +98,8 @@ func christmasTree(branchMax int, levelMax int) {
 		w += len("💫")
 	}
 	happyString = happyStringStar + happyString + happyStringStar
-	fmt.Print(happyString)
-	fmt.Print("\n")
+	fmt.Print(happyString + "\n")
+
 	branch := 0
 	for branch < branchMax {
 		if rand.Intn(2) == 0 {
@@ -103,5 +113,10 @@ func christmasTree(branchMax int, levelMax int) {
 }
 
 func main() {
-	christmasTree(31, 15)
+	args := os.Args[1:]
+	var brandString string = ""
+	if len(args) > 0 {
+		brandString = args[0]
+	}
+	christmasTree(30, 17, brandString)
 }
