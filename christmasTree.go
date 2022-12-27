@@ -94,8 +94,13 @@ func christmasTree(branchMax int, levelMax int, brandString string) {
 	w := 0
 	happyStringStar := ""
 	for w < firstSets {
-		happyStringStar = happyStringStar + "💫"
-		w += len("💫")
+		if rand.Intn(2) == 0 {
+			happyStringStar = happyStringStar + "💥"
+			w += len("💥")
+		} else {
+			happyStringStar = happyStringStar + "🎊"
+			w += len("🎊")
+		}
 	}
 	happyString = happyStringStar + happyString + happyStringStar
 	fmt.Print(happyString + "\n")
@@ -118,5 +123,9 @@ func main() {
 	if len(args) > 0 {
 		brandString = args[0]
 	}
-	christmasTree(30, 17, brandString)
+	for true {
+		christmasTree(30, 17, brandString)
+		time.Sleep(time.Second)
+		fmt.Printf("\x1bc")
+	}
 }
