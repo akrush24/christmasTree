@@ -100,7 +100,9 @@ func christmasTree(branchMax int, levelMax int, brandString string) {
 			groveUp = false
 		}
 	}
-
+	if brandString != "" {
+		brandString = " " + brandString
+	}
 	happyString := brandString + " HAPPY NEW 2023 YEAR!!! "
 	for len(happyString)%4 != 0 {
 		if len(happyString)%2 == 0 {
