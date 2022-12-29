@@ -100,6 +100,7 @@ func christmasTree(branchMax int, levelMax int, brandString string) {
 			groveUp = false
 		}
 	}
+
 	if brandString != "" {
 		brandString = " " + brandString
 	}
@@ -160,6 +161,7 @@ func main() {
 	if len(args) > 0 {
 		brandString = args[0]
 	}
+
 	// clear console before first print
 	fmt.Printf("\x1b[2J")
 	for true {
