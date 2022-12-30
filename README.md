@@ -2,7 +2,8 @@
 
 ## Only run with go
 ```bash
-go run ./christmasTree.go
+git clone git@github.com:akrush24/christmasTree.git
+go run ./christmasTree/christmasTree.go "UserName"
 ```
 
 ## Build and run
@@ -11,7 +12,7 @@ go build -ldflags="-s" ./christmasTree.go
 ./christmasTree
 ```
 
-## Build for otfer arch
+## Build for other arch
 ```bash
 go tool dist list
 env GOOS=linux GOARCH=amd64 go build -o christmasTree.linux.amd64 -ldflags="-s" ./christmasTree.go
