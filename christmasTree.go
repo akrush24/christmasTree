@@ -11,20 +11,28 @@ func christmasTree(branchMax int, levelMax int, brandString string) {
 	level := 1
 	branchMiddle := branchMax / 2
 	groveUp := true
+	var spaceDecor1, spaceDecor2 int
+
 	rand.Seed(time.Now().UnixNano())
 
-	var x, y int = 0, 0
+	var x, y int = 1, 1
 	for ; y < 5; y++ {
 		for ; x < branchMax; x++ {
-			switch rand.Intn(50) {
-			case 1, 2, 3:
+			if spaceDecor1 <= 9 {
+				spaceDecor1 = 10
+			} else {
+				spaceDecor1 = rand.Intn(y * 20)
+			}
+			switch spaceDecor1 {
+			case 1, 2, 3, 4, 5:
 				fmt.Print("✨")
-			case 4:
+			case 6, 7, 8, 9:
 				fmt.Print("💥")
 			default:
 				fmt.Print("  ")
 			}
 		}
+
 		x = 0
 		fmt.Println("")
 	}
@@ -45,11 +53,16 @@ func christmasTree(branchMax int, levelMax int, brandString string) {
 				groveUp = false
 			} else if branch < branchMiddle-level+1 || branch > branchMiddle+level-1 || (level > levelMax-2 || level < 2) {
 				// sky
-				if level < levelMax-5 && (branch < branchMiddle-level-1 || branch > branchMiddle+level+1) {
-					switch rand.Intn(50) {
-					case 1:
+				if level < levelMax-1 && (branch <= branchMiddle-level-1 || branch >= branchMiddle+level+1) {
+					if spaceDecor2 > 6 {
+						spaceDecor2 = rand.Intn(level * 20)
+					} else {
+						spaceDecor2 = 10
+					}
+					switch spaceDecor2 {
+					case 1, 2:
 						fmt.Print("✨")
-					case 2, 3, 4, 5, 6:
+					case 3, 4, 5, 6:
 						fmt.Print("💥")
 					default:
 						fmt.Print("  ")
@@ -60,31 +73,45 @@ func christmasTree(branchMax int, levelMax int, brandString string) {
 					fmt.Print("  ")
 				}
 			} else {
-				// decorations of the tree
-				decor := rand.Intn(12)
-				switch decor {
-				case 0:
-					fmt.Print("🔵")
-				case 1:
-					fmt.Print("🎁")
-				case 2:
-					fmt.Print("🟠")
-				case 3:
-					fmt.Print("🔵")
-				case 4:
-					fmt.Print("🔔")
-				case 5:
-					fmt.Print("🍍")
-				case 6:
-					fmt.Print("🔴")
-				case 7:
-					fmt.Print("🎀")
-				case 8:
-					fmt.Print("⭐")
-				case 9:
-					fmt.Print("🔴")
-				default:
-					fmt.Print("🟢")
+				if (branch == branchMiddle-level+1 || branch == branchMiddle+level-1) && level != levelMax-2 {
+					if branch%2 == 1 {
+						fmt.Print("💧")
+					} else {
+						fmt.Print("💡")
+					}
+				} else if level == levelMax-3 {
+					if branch%2 == 0 {
+						fmt.Print("💧")
+					} else {
+						fmt.Print("🟢")
+					}
+				} else if level == levelMax-2 {
+					fmt.Printf("  ")
+				} else {
+					// decorations of the tree
+					decor := rand.Intn(20)
+					switch decor {
+					case 0, 10, 11:
+						fmt.Print("🔵")
+					case 1:
+						fmt.Print("🎁")
+					case 2:
+						fmt.Print("🟠")
+					case 3:
+						fmt.Print("⛄")
+					case 4:
+						fmt.Print("🔔")
+					case 5:
+						fmt.Print("🍍")
+					case 6, 12, 13:
+						fmt.Print("🔴")
+					case 7:
+						fmt.Print("🎀")
+					case 8, 14, 15:
+						fmt.Print("⭐")
+					default:
+						fmt.Print("🟢")
+					}
 				}
 			}
 			branch++
@@ -101,6 +128,9 @@ func christmasTree(branchMax int, levelMax int, brandString string) {
 		}
 	}
 
+	if brandString != "" {
+		brandString = " " + brandString
+	}
 	happyString := brandString + " HAPPY NEW 2023 YEAR!!! "
 	for len(happyString)%4 != 0 {
 		if len(happyString)%2 == 0 {
@@ -158,6 +188,7 @@ func main() {
 	if len(args) > 0 {
 		brandString = args[0]
 	}
+
 	// clear console before first print
 	fmt.Printf("\x1b[2J")
 	for true {
