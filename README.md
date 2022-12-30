@@ -12,4 +12,4 @@ go build -ldflags="-s" ./christmasTree.go
 ```
 
 ## Result
-![image](https://user-images.githubusercontent.com/3369193/209924677-21cf870a-ecf8-4dc3-9192-37a1189d3acf.png)
+![image](https://user-images.githubusercontent.com/3369193/210077025-4843727e-097f-49db-ad45-ab990fb7a8bc.png)
