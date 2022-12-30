@@ -49,7 +49,7 @@ func christmasTree(branchMax int, levelMax int, brandString string) {
 				}
 			} else if (branch >= branchMiddle-1 && branch <= branchMiddle+1) && (level >= levelMax-4) {
 				// trunk
-				fmt.Print("🪵")
+				fmt.Print("🟤")
 				groveUp = false
 			} else if branch < branchMiddle-level+1 || branch > branchMiddle+level-1 || (level > levelMax-2 || level < 2) {
 				// sky
@@ -74,10 +74,19 @@ func christmasTree(branchMax int, levelMax int, brandString string) {
 				}
 			} else {
 				if (branch == branchMiddle-level+1 || branch == branchMiddle+level-1) && level != levelMax-2 {
+					var pik string
 					if branch%2 == 1 {
-						fmt.Print("💧")
+						pik = "💧"
 					} else {
-						fmt.Print("💡")
+						pik = "💡"
+					}
+					switch level {
+					case 2, 3, 4, 11:
+						fmt.Print(pik)
+					case 6, 7, 13:
+						fmt.Print(pik)
+					default:
+						fmt.Print("  ")
 					}
 				} else if level == levelMax-3 {
 					if branch%2 == 0 {
