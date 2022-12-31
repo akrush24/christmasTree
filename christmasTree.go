@@ -98,25 +98,25 @@ func christmasTree(branchMax int, levelMax int, brandString string) {
 					fmt.Printf("  ")
 				} else {
 					// decorations of the tree
-					decor := rand.Intn(20)
+					decor := rand.Intn(40)
 					switch decor {
-					case 0, 10, 11:
+					case 1, 2, 3, 4:
 						fmt.Print("🔵")
-					case 1:
+					case 5, 6, 7, 8, 9:
 						fmt.Print("🎁")
-					case 2:
+					case 10, 11, 12:
 						fmt.Print("🟠")
-					case 3:
+					case 13:
 						fmt.Print("⛄")
-					case 4:
+					case 14:
 						fmt.Print("🔔")
-					case 5:
+					case 15:
 						fmt.Print("🍍")
-					case 6, 12, 13:
+					case 16, 17, 18, 19, 20:
 						fmt.Print("🔴")
-					case 7:
+					case 21:
 						fmt.Print("🎀")
-					case 8, 14, 15:
+					case 22, 23, 24, 25, 26:
 						fmt.Print("⭐")
 					default:
 						fmt.Print("🟢")
